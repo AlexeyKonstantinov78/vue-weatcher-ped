@@ -1,9 +1,12 @@
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
       city: "",// переменые
       error: "",
+      info: null,
     }
   },
   computed: {
@@ -18,7 +21,11 @@ export default {
         return false
       }
       this.error = ''
+
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=03c1766a65006cabfc6b7cb74eeb443e`)
+        .then(res => this.info = res)
     }
+
   }
 }
 </script>
@@ -31,6 +38,8 @@ export default {
     <button v-if="city != ''" @click="getWeatcher()">Получить погоду</button>
     <button disabled v-else>Введите название города</button>
     <p class="error" v-show="error != ''">{{ error }}</p>
+
+    <p v-show="info != null">{{ info }}</p>
   </div>
 </template>
 
