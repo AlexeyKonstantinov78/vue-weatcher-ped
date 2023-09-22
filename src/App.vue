@@ -13,7 +13,7 @@ export default {
     <h1>Погодное приложение</h1>
     <p>Узнать погоду в {{ city == "" ? "вашем городе" : city }}</p>
     <input type="text" v-model="city" name="" id="" placeholder="Введите город">
-    <button>Получить погоду</button>
+    <button v-show="city != ''">Получить погоду</button>
   </div>
 </template>
 
