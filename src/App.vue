@@ -12,7 +12,19 @@ export default {
   computed: {
     cityName() {
       return '"' + this.city + '"'
-    }
+    },
+    showTemp() {
+      return "Температура: " + this.info.main.temp
+    },
+    showFeelsLike() {
+      return "Ощущается как: " + this.info.main.feels_like
+    },
+    showMinTemp() {
+      return "Минимальная температура: " + this.info.main.temp_min
+    },
+    showMaxTemp() {
+      return "Максимальная температура: " + this.info.main.temp_max
+    },
   },
   methods: {
     getWeatcher() {
@@ -23,7 +35,7 @@ export default {
       this.error = ''
 
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=03c1766a65006cabfc6b7cb74eeb443e`)
-        .then(res => this.info = res)
+        .then(res => this.info = res.data)
     }
 
   }
@@ -39,7 +51,12 @@ export default {
     <button disabled v-else>Введите название города</button>
     <p class="error" v-show="error != ''">{{ error }}</p>
 
-    <p v-show="info != null">{{ info }}</p>
+    <div v-if="info != null">
+      <p>{{ showTemp }}</p>
+      <p>{{ showFeelsLike }}</p>
+      <p>{{ showMinTemp }}</p>
+      <p>{{ showMaxTemp }}</p>
+    </div>
   </div>
 </template>
 
