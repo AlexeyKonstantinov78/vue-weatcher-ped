@@ -12,7 +12,7 @@ export default {
   <div class="wrapper">
     <h1>Погодное приложение</h1>
     <p>Узнать погоду в {{ city }}</p>
-    <input type="text" name="" id="" placeholder="Введите город">
+    <input type="text" v-on:input="this.city = $event.target.value" name="" id="" placeholder="Введите город">
     <button>Получить погоду</button>
   </div>
 </template>
@@ -39,6 +39,7 @@ export default {
   font-size: 14px;
   padding: 5px 8px;
   outline: none;
+  color:#fff;
 }
 .wrapper input:focus{
   border-bottom-color: #6e2d7d;
