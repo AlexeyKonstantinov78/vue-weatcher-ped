@@ -2,12 +2,22 @@
 export default {
   data() {
     return {
-      city: ""// переменые
+      city: "",// переменые
+      error: "",
     }
   },
   computed: {
     cityName() {
       return '"' + this.city + '"'
+    }
+  },
+  methods: {
+    getWeatcher() {
+      if (this.city.trim().length < 2) {
+        this.error = "Нужно название больше одного символа"
+        return false
+      }
+      this.error = ''
     }
   }
 }
@@ -18,12 +28,16 @@ export default {
     <h1>Погодное приложение</h1>
     <p>Узнать погоду в {{ city == "" ? "вашем городе" : cityName }}</p>
     <input type="text" v-model="city" name="" id="" placeholder="Введите город">
-    <button v-if="city != ''">Получить погоду</button>
+    <button v-if="city != ''" @click="getWeatcher()">Получить погоду</button>
     <button disabled v-else>Введите название города</button>
+    <p class="error" v-show="error != ''">{{ error }}</p>
   </div>
 </template>
 
 <style scoped>
+.error {
+  color: red;
+}
 .wrapper {
   width: 900px;
   height: 500px;
