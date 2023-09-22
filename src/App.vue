@@ -11,7 +11,7 @@ export default {
 <template>  
   <div class="wrapper">
     <h1>Погодное приложение</h1>
-    <p>Узнать погоду в {{ city == "" ? "вашем городе" : city }}</p>
+    <p>Узнать погоду в {{ city == "" ? "вашем городе" : '"' + city + '"'}}</p>
     <input type="text" v-model="city" name="" id="" placeholder="Введите город">
     <button v-if="city != ''">Получить погоду</button>
     <button disabled v-else>Введите название города</button>
@@ -58,5 +58,9 @@ export default {
 }
 .wrapper button:hover {
   transform: scale(1.1) translateY(-5px);
+}
+.wrapper button:disabled {
+  background-color: #746027;
+  cursor: not-allowed;
 }
 </style>
