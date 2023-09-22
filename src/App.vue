@@ -12,7 +12,7 @@ export default {
   <div class="wrapper">
     <h1>Погодное приложение</h1>
     <p>Узнать погоду в {{ city }}</p>
-    <input type="text" v-on:input="this.city = $event.target.value" name="" id="" placeholder="Введите город">
+    <input type="text" @input="this.city = $event.target.value" name="" id="" placeholder="Введите город">
     <button>Получить погоду</button>
   </div>
 </template>
